@@ -12,17 +12,16 @@
           matTooltipClass="tooltip-beta-red"
           matTooltip="{{ 'BETA_TOOLTIP' | translate }}"
         >
-          <strong>{{ 'BETA' | translate }}</strong>
+          <strong>{{ "BETA" | translate }}</strong>
         </span>
       </div>
       <a
         mat-button
-        [routerLink]="[env.persons,'']"
+        [routerLink]="[env.projects, '']"
         style="white-space: normal; display: flex; align-items: center"
-
       >
         <img
-          src="{{icon}}"
+          src="{{ icon }}"
           [alt]="iconAlt | translate"
           style="height: 50px; margin-right: 6px"
         />
@@ -38,7 +37,8 @@
       fxLayoutAlign="center"
       fxLayoutGap="15px"
     >
-      <button *ngIf="showMenuLang"
+      <button
+        *ngIf="showMenuLang"
         mat-icon-button
         [matMenuTriggerFor]="menuLanguages"
         matTooltip="{{ 'IDIOMA' | translate }}"
@@ -46,9 +46,10 @@
         <mat-icon class="mat-18">translate</mat-icon>
       </button>
 
-      <app-menu [menuItems]="_menuOptions" ></app-menu>
+      <app-menu [menuItems]="_menuOptions"></app-menu>
 
-      <toco-authentication *ngIf="!user"
+      <toco-authentication
+        *ngIf="!user"
         [oauthInfo]="oauthInfo"
         [isButtonLogin]="'true'"
         [isButtonLoginIcon]="'true'"
@@ -60,8 +61,14 @@
 </mat-toolbar>
 
 <mat-menu #menuLanguages="matMenu">
-  <a *ngFor="let lang of languageTexts; let i=index" mat-menu-item (click)="setLanguage(i)">
-    <mat-icon *ngIf="i == currentLang; else elseTemplate_radio_button_unchecked">radio_button_checked</mat-icon>
+  <a
+    *ngFor="let lang of languageTexts; let i = index"
+    mat-menu-item
+    (click)="setLanguage(i)"
+  >
+    <mat-icon *ngIf="i == currentLang; else elseTemplate_radio_button_unchecked"
+      >radio_button_checked</mat-icon
+    >
     {{ lang }}
   </a>
 
@@ -71,16 +78,20 @@
 </mat-menu>
 
 <mat-menu #menuHeader="matMenu">
-<ng-container *ngFor="let item of menuElements">
-  <a mat-menu-item [routerLink]="item.href" *ngIf="item.useRouterLink; else useHrefMenu">
-    <!-- <mat-icon>dialpad</mat-icon> -->
-    <span>{{item.nameTranslate |translate}}</span>
-  </a>
-  <ng-template #useHrefMenu>
-    <a mat-menu-item [href]="item.href" [target]="item.target">
+  <ng-container *ngFor="let item of menuElements">
+    <a
+      mat-menu-item
+      [routerLink]="item.href"
+      *ngIf="item.useRouterLink; else useHrefMenu"
+    >
       <!-- <mat-icon>dialpad</mat-icon> -->
-      <span>{{item.nameTranslate |translate}}</span>
+      <span>{{ item.nameTranslate | translate }}</span>
     </a>
-  </ng-template>
-</ng-container>
+    <ng-template #useHrefMenu>
+      <a mat-menu-item [href]="item.href" [target]="item.target">
+        <!-- <mat-icon>dialpad</mat-icon> -->
+        <span>{{ item.nameTranslate | translate }}</span>
+      </a>
+    </ng-template>
+  </ng-container>
 </mat-menu>

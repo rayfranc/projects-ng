@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {HttpBackend, HttpClient} from "@angular/common/http";
-import {Environment} from "toco-lib";
-import {Observable} from "rxjs";
-import {Person} from "../app/people/person.entity";
+import { Injectable } from "@angular/core";
+import { HttpBackend, HttpClient } from "@angular/common/http";
+import { Environment } from "toco-lib";
+import { Observable } from "rxjs";
+import { Project } from "../app/project/person.entity";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PeopleService {
   private newHttp: HttpClient;
@@ -17,10 +17,10 @@ export class PeopleService {
     this.newHttp = new HttpClient(handler);
   }
 
-  getOrganizationById(id: string): Observable<Person> {
-    const req = this.environment.cuorApi + 'view/' + id ;
+  getOrganizationById(id: string): Observable<Project> {
+    const req = this.environment.cuorApi + "view/" + id;
     // console.log(req);
 
-    return this.newHttp.get<Person>(req);
+    return this.newHttp.get<Project>(req);
   }
 }

@@ -1,63 +1,63 @@
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundPeopleComponent } from './page-not-found-people/page-not-found-people.component';
-import { SearchComponent } from './search/search.component';
-import {PeopleViewComponent} from "./people-view/people-view.component";
-import {Layouts} from "./app.component";
-import { ImportPeopleComponent } from './import-people/import-people.component';
-import { PeopleActiveResolverService } from './people/people-resolver';
-import { PeopleLayoutComponent } from './layout/people-layout/people-layout.component';
-import { MainlayoutComponent } from './layout/mainlayout/mainlayout.component';
+import { HomeComponent } from "./home/home.component";
+import { PageNotFoundPeopleComponent } from "./page-not-found-project/page-not-found-people.component";
+import { SearchComponent } from "./search/search.component";
+import { ProjectViewComponent } from "./project-view/project-view.component";
+import { Layouts } from "./app.component";
+import { ImportPeopleComponent } from "./import-people/import-people.component";
+import { PeopleActiveResolverService } from "./project/people-resolver";
+import { PeopleLayoutComponent } from "./layout/people-layout/people-layout.component";
+import { MainlayoutComponent } from "./layout/mainlayout/mainlayout.component";
+import { AdminPermissionService } from "./project/permission.service";
 
 const routes: Routes = [
-	// {
+  // {
   {
-    path: '',
+    path: "",
     component: MainlayoutComponent,
     children: [
       {
-        path: '',
+        path: "",
         component: HomeComponent,
         // data: { layout: Layouts.Main },
       },
       {
-        path: 'search',
+        path: "search",
         component: SearchComponent,
         // data: { layout: Layouts.Main },
       },
       {
-        path: 'import',
+        path: "import",
         component: ImportPeopleComponent,
         data: { layout: Layouts.Main },
-      }
+      },
     ],
   },
   {
-    path: 'person/:uuid',
+    path: "project/:uuid",
     component: PeopleLayoutComponent,
     resolve: {
-      'person': PeopleActiveResolverService
+      project: PeopleActiveResolverService,
     },
     children: [
       {
-        path: 'view',
-        component: PeopleViewComponent,
+        path: "view",
+        component: ProjectViewComponent,
         // data: { layout: Layouts.People },
-
-      }]
+      },
+    ],
+    canActivate: [AdminPermissionService],
   },
-	// {
-	// 	path: '**',
-	// 	component: PageNotFoundPeopleComponent
-	// }
+  {
+    path: "**",
+    component: PageNotFoundPeopleComponent,
+  },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, {})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {})],
+  exports: [RouterModule],
 })
-export class AppRoutingModule
-{ }
+export class AppRoutingModule {}

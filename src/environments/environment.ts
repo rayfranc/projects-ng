@@ -15,47 +15,48 @@ import { Environment } from "toco-lib";
 
 export class EnvironmentImpl implements Environment {
   production = false;
-  sceibaHost = 'https://127.0.0.1:5000/';
-  cuorHost = 'https://127.0.0.1:5000/';
-  sceibaApi = 'https://127.0.0.1:5000/api/';
-  cuorApi = 'https://127.0.0.1:5000/api/';
+  sceibaHost = "https://127.0.0.1:5000/";
+  cuorHost = "https://127.0.0.1:5000/";
+  sceibaApi = "https://127.0.0.1:5000/api/";
+  cuorApi = "https://127.0.0.1:5000/api/";
 
-  appHost = 'https://localhost:4100';
-  appName = 'Sceiba';
+  appHost = "https://127.0.0.1:4200";
+  appName = "Sceiba";
 
-  websiteUsername_Twitter = '@SceibaCuba';
-  websiteUsername_Facebook = '@sceiba';
+  websiteUsername_Twitter = "@SceibaCuba";
+  websiteUsername_Facebook = "@sceiba";
 
-  oauthRedirectUri = 'https://localhost:4100/';
-  oauthClientId = 'LYnMUzdJDrOtMDQY7fXicXuSdXYuaUtCwjRh1olp';
-  oauthScope = 'user:email';
-  topOrganizationPID = '';
+  oauthRedirectUri = "https://127.0.0.1:4200/";
+  oauthClientId = "tHSFJwuJ1yRNECNnYSPL2yvaIoAFHPmKoDboZPU2";
+  oauthScope = "user:email";
+  topOrganizationPID = "";
   cachableUrls = [];
 
-  matomoUrl = 'https://crai-stats.upr.edu.cu/';
+  matomoUrl = "https://crai-stats.upr.edu.cu/";
   matomoSiteId = 7;
 
-  sceiba = 'https://cuba.sceiba.org';
-  discover = 'https://cuba.sceiba.org/search';
-  catalog = 'https://cuba-catalogo.sceiba.org/';
-  revistasmes = 'https://cuba-revistasmes.sceiba.org/';
-  organizations = 'https://cuba-organizaciones.sceiba.org/';
-  persons = '';
-  vocabularies = 'https://vocabularios.sceiba.cu/';
-  moodle = 'https://courses.sceiba.org/';
-  evaluations = 'https://evaluaciones.sceiba.org/';
+  sceiba = "https://cuba.sceiba.org";
+  discover = "https://cuba.sceiba.org/search";
+  catalog = "https://cuba-catalogo.sceiba.org/";
+  revistasmes = "https://cuba-revistasmes.sceiba.org/";
+  organizations = "https://cuba-organizaciones.sceiba.org/";
+  persons = "";
+  projects = "";
+  vocabularies = "https://vocabularios.sceiba.cu/";
+  moodle = "https://courses.sceiba.org/";
+  evaluations = "https://evaluaciones.sceiba.org/";
 
   oauthInfo = {
     serverHost: this.sceibaHost,
-    loginUrl: this.sceibaHost + 'oauth/authorize',
-    tokenEndpoint: this.sceibaHost + 'oauth/token',
-    userInfoEndpoint: this.sceibaApi + 'me',
+    loginUrl: this.sceibaHost + "oauth/internal/authorize",
+    tokenEndpoint: this.sceibaHost + "oauth/token",
+    userInfoEndpoint: this.sceibaApi + "me",
     appHost: this.appHost,
     appName: this.appName,
     oauthRedirectUri: this.oauthRedirectUri,
     oauthClientId: this.oauthClientId,
     oauthScope: this.oauthScope,
-  }
+  };
 }
 
 export const environment = new EnvironmentImpl();

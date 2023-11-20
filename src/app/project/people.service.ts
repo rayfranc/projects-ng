@@ -17,7 +17,7 @@ import {
   SearchResponse,
 } from "toco-lib";
 
-import { Person } from "./person.entity";
+import { Project } from "./person.entity";
 
 /**
  * Represents the service that communicates with the backend for all issues
@@ -27,7 +27,7 @@ import { Person } from "./person.entity";
   providedIn: "root",
 })
 export class PeopleService {
-  private readonly _prefix = "people";
+  private readonly _prefix = "projects";
 
   // _http: HttpClient;
 
@@ -52,20 +52,18 @@ export class PeopleService {
    * The English language is: 'en'.
    * @return An `Observable` of the `HTTPResponse`, with a response body in the `SearchResponse<Person>` type.
    */
-  public getPeople(params: HttpParams): Observable<SearchResponse<Person>> {
+  public getPeople(params: HttpParams): Observable<SearchResponse<Project>> {
     const options = {
       params: params,
-      // headers: this.headers
     };
-    // console.log(params);
-    const req = this._env.sceibaApi + "search/persons/";
+    const req = this._env.sceibaApi + "search/projects/";
     // console.log(req);
-    return this._http.get<SearchResponse<Person>>(req);
+    return this._http.get<SearchResponse<Project>>(req, { params });
   }
 
-  public getPeopleById(uuid: string): Observable<any> {
-    const req = this._env.sceibaApi + "pid/persons/" + uuid;
-    return this._http.get<SearchResponse<Person>>(req);
+  public getProjectById(uuid: string): Observable<any> {
+    const req = this._env.sceibaApi + "pid/projects/" + uuid;
+    return this._http.get<SearchResponse<Project>>(req);
   }
 
   saveImport(org, file: File) {
@@ -73,7 +71,7 @@ export class PeopleService {
     const formData = new FormData();
     formData.append("file", file);
     console.log(file);
-    const req = this._env.sceibaApi + "persons/import/" + org;
+    const req = this._env.sceibaApi + "projects/import/" + org;
     // const headers = new HttpHeaders({
     //   enctype: "multipart/form-data",
     //   "Content-Type": "multipart/form-data",

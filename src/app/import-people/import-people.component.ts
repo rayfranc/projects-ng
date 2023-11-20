@@ -4,7 +4,7 @@ import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
 import { MessageHandler, StatusCode } from "toco-lib";
-import { PeopleService } from "../people/people.service";
+import { PeopleService } from "../project/people.service";
 import { ParamMap, Params, Router } from "@angular/router";
 import { OrgDialogComponent } from "./org-dialog/org-dialog.component";
 
@@ -14,15 +14,14 @@ import { OrgDialogComponent } from "./org-dialog/org-dialog.component";
   styleUrls: ["./import-people.component.scss"],
 })
 export class ImportPeopleComponent {
-
   people: any;
   file: File[] = [];
   dataSource = new MatTableDataSource<any>([]);
   m = new MessageHandler(this._snackBar);
   org: any;
 
-  isJsonFile: boolean = false
-  isOpenDialog: boolean = false
+  isJsonFile: boolean = false;
+  isOpenDialog: boolean = false;
 
   requiredCSVkyes = [
     "apellido1",
@@ -65,7 +64,7 @@ export class ImportPeopleComponent {
           this.requiredCSVkyes.every((key) => persons[0].hasOwnProperty(key));
 
         if (areValidCSVKeys) {
-          this.isJsonFile = false
+          this.isJsonFile = false;
           this.file = file;
           this.openDialog();
           // this.isOpenDialog=true
@@ -80,7 +79,7 @@ export class ImportPeopleComponent {
         );
 
         if (isValidJson && areValidKeys) {
-          this.isJsonFile = true
+          this.isJsonFile = true;
           this.file = file;
           this.openDialog();
           // this.isOpenDialog=true
@@ -116,7 +115,10 @@ export class ImportPeopleComponent {
         // const eliminado = this.people.shift();
         this.dataSource.data =
           this.people.length > 800 ? this.people.slice(0, 800) : this.people;
-          console.log("🚀 ~ file: import-people.component.ts:130 ~ this.readFile ~ this.dataSource.data", this.dataSource.data)
+        console.log(
+          "🚀 ~ file: import-people.component.ts:130 ~ this.readFile ~ this.dataSource.data",
+          this.dataSource.data
+        );
       });
     }
   }
@@ -195,8 +197,11 @@ export class ImportPeopleComponent {
   }
 
   afterClosed(result) {
-    console.log("🚀 ~ file: import-people.component.ts:201 ~ afterClosed ~ result:", result)
-    this.isOpenDialog=false
+    console.log(
+      "🚀 ~ file: import-people.component.ts:201 ~ afterClosed ~ result:",
+      result
+    );
+    this.isOpenDialog = false;
     this.org = result;
   }
 }
