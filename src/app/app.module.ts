@@ -42,7 +42,7 @@ import { ImportPeopleComponent } from "./import-people/import-people.component";
 import { JsonTableComponent } from "./import-people/json-table/json-table.component";
 import { OrgDialogComponent } from "./import-people/org-dialog/org-dialog.component";
 import { MainlayoutComponent } from "./layout/mainlayout/mainlayout.component";
-import { PeopleLayoutComponent } from "./layout/people-layout/people-layout.component";
+import { PeopleLayoutComponent } from "./layout/project-layout/project-layout.component";
 import { PageNotFoundPeopleComponent } from "./page-not-found-project/page-not-found-people.component";
 import { GeneralTabComponent } from "./project-view/general-tab/general-tab.component";
 import { ProjectViewComponent } from "./project-view/project-view.component";
@@ -51,6 +51,7 @@ import { SearchComponent } from "./search/search.component";
 import { SelectOrgComponent } from "./select-org/select-org.component";
 import { SharedModule } from "./shared/shared.module";
 import { AggregationViewComponent } from "./aggregations/aggregations.component";
+import { OtherTabComponent } from "./project-view/other-tab/other-tab.component";
 
 export function storageFactory(): OAuthStorage {
   return localStorage;
@@ -66,6 +67,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     AppComponent,
     HomeComponent,
     AggregationViewComponent,
+    OtherTabComponent,
     PageNotFoundPeopleComponent,
     FooterComponent,
     SearchComponent,

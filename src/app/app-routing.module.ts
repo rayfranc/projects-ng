@@ -8,7 +8,7 @@ import { ProjectViewComponent } from "./project-view/project-view.component";
 import { Layouts } from "./app.component";
 import { ImportPeopleComponent } from "./import-people/import-people.component";
 import { PeopleActiveResolverService } from "./project/people-resolver";
-import { PeopleLayoutComponent } from "./layout/people-layout/people-layout.component";
+import { PeopleLayoutComponent } from "./layout/project-layout/project-layout.component";
 import { MainlayoutComponent } from "./layout/mainlayout/mainlayout.component";
 import { AdminPermissionService } from "./project/permission.service";
 

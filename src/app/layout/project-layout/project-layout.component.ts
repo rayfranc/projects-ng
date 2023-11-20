@@ -4,9 +4,9 @@ import { PeopleService } from "../../project/people.service";
 import { Project } from "../../project/person.entity";
 
 @Component({
-  selector: "app-people-layout",
-  templateUrl: "./people-layout.component.html",
-  styleUrls: ["./people-layout.component.scss"],
+  selector: "app-project-layout",
+  templateUrl: "./project-layout.component.html",
+  styleUrls: ["./project-layout.component.scss"],
 })
 export class PeopleLayoutComponent implements OnInit {
   public project: Project;

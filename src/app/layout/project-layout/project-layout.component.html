@@ -1,7 +1,7 @@
 <div class="bg-primary-color wrapper">
   <div class="header" fxLayout.xs="column">
     <mat-icon>assignment</mat-icon>
-    <div class="person-primary-info">
+    <div class="project-primary-info">
       <p class="title">{{ project.title[0].title }}</p>
       <p class="sub-title">
         {{
@@ -12,6 +12,7 @@
             project.creator[0].familyName
         }}
       </p>
+
       <p class="sub-title">
         {{
           project.identifiers[0].idtype + ": " + project.identifiers[0].value

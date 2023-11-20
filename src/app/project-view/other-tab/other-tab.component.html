@@ -1,0 +1,96 @@
+<mat-card class="general-card">
+  <mat-card-content>
+    <div class="container">
+      <div class="section">
+        <label class="label-id">SceibaID: {{ project.id }}</label>
+        <div *ngIf="project.title.length > 1">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 5px;
+            "
+            *ngFor="let title of project.title.slice(1)"
+          >
+            <h4 class="section-title">Otros Titulos</h4>
+            <hr
+              style="
+                border-style: none;
+                border-color: rgba(255, 255, 255, 0);
+                margin: 0;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                flex-grow: 1;
+              "
+            />
+            <h4 class="section-title">Lenguaje</h4>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 5px;
+            "
+            *ngFor="let title of project.title.slice(1)"
+          >
+            <label style="margin: 0">
+              {{ title.title }}
+            </label>
+            <hr
+              style="
+                border-style: dashed;
+                border-color: rgba(85, 85, 85, 0.616);
+                border-width: 1px;
+                margin: 0;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                flex-grow: 1;
+              "
+            />
+            <p style="display: inline-block; margin: 0; margin-right: 2rem">
+              {{ title.lang }}
+            </p>
+          </div>
+        </div>
+        <div *ngIf="project.contributor">
+          <hr />
+          <h4 class="section-title">Contribuidores</h4>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 5px;
+            "
+            *ngFor="let contributor of project.contributor"
+          >
+            <label style="margin: 0">
+              {{ contributor.contributorName + " " + contributor.familyName }}
+            </label>
+            <hr
+              style="
+                border-style: dashed;
+                border-color: rgba(85, 85, 85, 0.616);
+                border-width: 1px;
+                margin: 0;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                flex-grow: 1;
+              "
+            />
+            <p style="display: inline-block; margin: 0; margin-right: 2rem">
+              {{ contributor.contributorType }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div *ngIf="project.fundingReference">
+          <h4 class="section-title">Detalles de Financiamiento</h4>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

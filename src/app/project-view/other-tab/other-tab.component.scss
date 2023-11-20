@@ -1,0 +1,55 @@
+.general-card {
+  width: full;
+  margin: 2vh;
+}
+.table {
+  border-radius: 2vh;
+}
+.label-id {
+  color: #8b8b8b;
+}
+
+.label-id:hover {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.section {
+  flex-grow: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+.section-title {
+  font-weight: bolder;
+  color: #007e3e;
+}
+
+.table-name {
+  color: #007e3e;
+  font-weight: 600;
+  font-size: 1.5vh;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+  .table-founder {
+    visibility: hidden;
+  }
+  .general-card {
+    margin: 0;
+  }
+  .container {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 948px) {
+  .container {
+    justify-content: center;
+  }
+}

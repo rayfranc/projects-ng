@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { PeopleLayoutComponent } from './people-layout.component';
+import { PeopleLayoutComponent } from "./project-layout.component";
 
-describe('PeopleLayoutComponent', () => {
+describe("PeopleLayoutComponent", () => {
   let component: PeopleLayoutComponent;
   let fixture: ComponentFixture<PeopleLayoutComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PeopleLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [PeopleLayoutComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('PeopleLayoutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
