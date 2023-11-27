@@ -286,22 +286,17 @@ export class HeaderComponent implements OnInit {
 
     this.staticMenuOptions = this.menuOptions || [
       {
-        nameTranslate: "IMPORTAR",
-        icon: "publish",
-        useRouterLink: true,
-        hideLabel: true,
-        href: "/import",
-      },
-      {
         nameTranslate: "APLICACIONES",
         icon: "apps",
         childrenMenu: menuApps,
         isMenuApps: true,
+        hidden: false,
       },
       {
         nameTranslate: "AYUDA",
         icon: "help",
         childrenMenu: menuHelp,
+        hidden: false,
       },
       // {
       //   nameTranslate: "USUARIO",
@@ -316,18 +311,35 @@ export class HeaderComponent implements OnInit {
       //   hidden: this.isAuthenticated
       // },
     ];
-
+    console.log(localStorage.getItem("user") ? false : true);
     this._menuOptions = this.staticMenuOptions;
 
     let request = JSON.parse(this.oauthStorage.getItem("user"));
     console.log("USER");
     console.log(request);
     if (request) {
-      this.user = request;
-      const roles = request.roles.map((en) => en.name);
-      localStorage.setItem("roles", roles);
+      this.user = request.data.userprofile.user;
+      if (request.roles) {
+        const roles = request.roles.map((en) => en.name);
+        localStorage.setItem("roles", roles);
+      }
       this._menuOptions = [
+        {
+          nameTranslate: "NEW",
+          icon: "add_circle",
+          useRouterLink: true,
+          hideLabel: true,
+          href: "/new",
+        },
+        {
+          nameTranslate: "IMPORTAR",
+          icon: "publish",
+          useRouterLink: true,
+          hideLabel: true,
+          href: "/import",
+        },
         ...this.staticMenuOptions,
+
         {
           nameTranslate: this.user ? this.user.email.split("@")[0] : "",
           icon: "person_pin",
@@ -344,7 +356,22 @@ export class HeaderComponent implements OnInit {
             this.user = request.data.userprofile.user;
 
             this._menuOptions = [
+              {
+                nameTranslate: "NEW",
+                icon: "add_circle",
+                useRouterLink: true,
+                hideLabel: true,
+                href: "/new",
+              },
+              {
+                nameTranslate: "IMPORTAR",
+                icon: "publish",
+                useRouterLink: true,
+                hideLabel: true,
+                href: "/import",
+              },
               ...this.staticMenuOptions,
+
               {
                 nameTranslate: this.user ? this.user.email.split("@")[0] : "",
                 icon: "person_pin",
@@ -417,6 +444,7 @@ export class HeaderComponent implements OnInit {
   public logoff() {
     this.oauthService.logOut();
     this.oauthStorage.removeItem("user");
+    localStorage.setItem("roles", "");
     this.user = undefined;
     this._menuOptions = this.staticMenuOptions;
   }

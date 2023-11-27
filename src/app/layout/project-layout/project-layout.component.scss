@@ -11,8 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 
-    mat-icon {
+    .principal-icon {
       width: 200px;
       height: 200px;
       font-size: 200px;
@@ -32,6 +33,11 @@
       margin-right: 5px;
     }
   }
+}
+
+.button-container {
+  align-self: flex-end;
+  justify-content: space-around;
 }
 
 .project-primary-info {
@@ -63,6 +69,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .button-container {
+    align-self: center;
   }
 }
 

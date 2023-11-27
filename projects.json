@@ -1,0 +1,73 @@
+{
+  "projects": [
+    {
+      "title": [
+        {
+          "title": "Pestecita",
+          "lang": "es",
+          "titleType": "AlternativeTitle"
+        },
+        {
+          "title": "No no no ulala",
+          "lang": "en",
+          "titleType": "AlternativeTitle"
+        }
+      ],
+      "creator": [
+        {
+          "creatorName": "Raymond",
+          "givenName": "El Tanke",
+          "familyName": "Francisco"
+        },
+        { "creatorName": "Ray", "givenName": "Nunez", "familyName": "Wong" }
+      ],
+      "contributor": [
+        {
+          "contributorName": "El Pepe Gernandez",
+          "contributorType": "DataCollector",
+          "familyName": "Yoel"
+        },
+        {
+          "contributorName": "Chocolate",
+          "contributorType": "DataCollector",
+          "familyName": "Rastamemba 7"
+        }
+      ],
+      "identifiers": [
+        {
+          "idtype": "ark",
+          "value": "11920031aaaaa"
+        }
+      ],
+      "lenguaje": ["es", "en"],
+      "publishDate": {
+        "dateValue": "02/12/2020",
+        "dateType": "Available"
+      },
+      "relatedIdentifier": [
+        {
+          "idValue": "11920031aaaa",
+          "idType": "ark"
+        }
+      ],
+      "fundingReference": [
+        {
+          "founderName": "La Tiza Record",
+          "awardURI": "http://12342.com",
+          "awardNumber": "rj35"
+        },
+        {
+          "founderName": "La Tiza Record",
+          "awardURI": "http://12342.com",
+          "awardNumber": "rj35"
+        },
+        {
+          "founderName": "La Tiza Record",
+          "awardURI": "http://12342.com",
+          "awardNumber": "rj35"
+        }
+      ],
+      "publisher": ["Azul Oscuro"]
+    }
+  ]
+}

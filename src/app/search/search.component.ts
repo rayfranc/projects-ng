@@ -8,10 +8,12 @@ import {
   Params,
   Router,
 } from "@angular/router";
-
-import { AggregationsSelection, SearchResponse } from "toco-lib";
-import { AggregationViewComponent } from "../aggregations/aggregations.component";
-import { PeopleService } from "../project/people.service";
+import {
+  AggregationsComponent,
+  AggregationsSelection,
+  SearchResponse,
+} from "toco-lib";
+import { ProjectService } from "../project/people.service";
 import { Project } from "../project/person.entity";
 
 /**
@@ -22,6 +24,7 @@ import { Project } from "../project/person.entity";
   selector: "app-search",
   templateUrl: "./search.component.html",
   styleUrls: ["./search.component.scss"],
+  providers: [AggregationsComponent],
 })
 export class SearchComponent implements OnInit {
   /**
@@ -32,7 +35,7 @@ export class SearchComponent implements OnInit {
   // /**
   //  * Represents the `ChartType` enum for internal use.
   //  */
-  // public readonly chartType: typeof ChartType;
+  public readonly chartType: any;
 
   /**
    * Indicates the search result type.
@@ -43,7 +46,12 @@ export class SearchComponent implements OnInit {
   public searchResultType: boolean;
   public aggrKeys: Array<any>;
   // public currentChartType: ChartType;
-
+  public gradient = true;
+  public colorScheme = {
+    domain: ["#95EC00", "#00C322", "#FF1300", "D2006B"],
+  };
+  public view = window.innerWidth <= 740 ? [350, 200] : [700, 400];
+  public single = [];
   public pageSize: number;
   public pageIndex: number;
   public pageSizeOptions: number[];
@@ -67,7 +75,7 @@ export class SearchComponent implements OnInit {
   public drawer: MatDrawer;
 
   public constructor(
-    private peopleService: PeopleService,
+    private peopleService: ProjectService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -176,23 +184,36 @@ export class SearchComponent implements OnInit {
    * Fetches the search that was requested using the `_params`.
    */
   private fetchSearchRequested(): void {
-    this.peopleService.getPeople(this.params).subscribe(
+    this.peopleService.getProjects(this.params).subscribe(
       (response: SearchResponse<Project>) => {
         this.sr = response;
         console.log(this.sr);
         this.aggrKeys = [
           {
-            value: this.sr.aggregations.publisher,
-            key: "Pais",
-            sp: "Editorial",
+            value: this.sr.aggregations.founder,
+            key: "Subvencionista",
+            name: "Subvencionista",
+            sp: "Subvencionista",
           },
           {
             value: this.sr.aggregations.creator,
             key: "Creador",
+            name: "Creador",
             sp: "Creador",
           },
         ];
-        console.log(this.aggrKeys);
+        this.single[0] = this.sr.aggregations.creator.buckets.map((buck) => {
+          return {
+            name: buck.key,
+            value: buck.doc_count,
+          };
+        });
+        this.single[1] = this.sr.aggregations.founder.buckets.map((buck) => {
+          return {
+            name: buck.key,
+            value: buck.doc_count,
+          };
+        });
       },
 
       (error: any) => {
@@ -255,8 +276,10 @@ export class SearchComponent implements OnInit {
     // console.log("window:resize", window.innerWidth);
     if (window.innerWidth <= 740) {
       this.drawerMode = "over";
+      this.view = [350, 200];
     } else {
       this.drawerMode = "side";
+      this.view = [700, 400];
     }
   }
 }

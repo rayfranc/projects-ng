@@ -1,20 +1,16 @@
 import { HttpParams } from "@angular/common/http";
-import {
-  Component,
-  HostListener,
-  Input,
-  ViewChild
-} from "@angular/core";
+import { Component, HostListener, Input, ViewChild } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { PageEvent } from "@angular/material/paginator";
 import { MatDrawer } from "@angular/material/sidenav";
-import {
-  NavigationExtras,
-  Params
-} from "@angular/router";
-import { OrgService } from "../../_services/org.service";
+import { NavigationExtras, Params } from "@angular/router";
 
-import { AggregationsSelection, Environment, Organization, SearchResponse } from "toco-lib";
+import {
+  AggregationsSelection,
+  Environment,
+  Organization,
+  SearchResponse,
+} from "toco-lib";
 
 @Component({
   selector: "app-org-dialog",
@@ -75,16 +71,18 @@ export class OrgDialogComponent {
   selectedOrgs: any;
 
   @Input() multipleSelection: boolean = false;
-  @Input() header: string = 'Seleccione la organización a que pertenecen las personas a importar.';
+  @Input() header: string =
+    "Seleccione la organización a que pertenecen las personas a importar.";
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
 
   public env: Environment;
   public constructor(
     private _env: Environment,
-    private _cuorService: OrgService,
     public dialogRef: MatDialogRef<OrgDialogComponent>
-  ) {this.env = this._env;}
+  ) {
+    this.env = this._env;
+  }
 
   public ngOnInit(): void {
     this.query = "";
@@ -117,32 +115,7 @@ export class OrgDialogComponent {
     this.params = this.params.set("country", "Cuba");
   }
 
-  public fetchSearchRequest() {
-    this._cuorService.getOrganizations(this.params).subscribe(
-      (response: SearchResponse<Organization>) => {
-        // this.pageEvent.length = response.hits.total;
-        this.sr = response;
-        console.log(
-          "🚀 ~ file: org-dialog.component.ts:115 ~ OrgDialogComponent ~ fetchSearchRequest ~ this.sr",
-          this.sr
-        );
-        delete this.sr.aggregations["country"];
-        this.aggr_keys = [
-          //{value: this.sr.aggregations.country, key: 'País'},
-          { value: this.sr.aggregations.state, key: "Provincia" },
-          { value: this.sr.aggregations.status, key: "Estado" },
-          { value: this.sr.aggregations.types, key: "Tipo" },
-        ];
-      },
-      (error: any) => {
-        console.log("ERROPR");
-      },
-      () => {
-        console.log("END...");
-        this.loading = false;
-      }
-    );
-  }
+  public fetchSearchRequest() {}
 
   public pageChange(event?: PageEvent): void {
     this.pageSize = event.pageSize;

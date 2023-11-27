@@ -14,15 +14,15 @@
   <div class="w-100" fxLayout="row" fxLayoutAlign="center center">
     <div class="w-80" style="margin: 1em 0">
       <toco-search-query-input
-          [buttonColor]="'primary'"
-          [query]="''"
-          (queryChange)="queryChange($event)"
-          class="w-100"
-        ></toco-search-query-input>
+        [buttonColor]="'primary'"
+        [query]="''"
+        (queryChange)="queryChange($event)"
+        class="w-100"
+      ></toco-search-query-input>
     </div>
   </div>
 
-  <div
+  <!-- <div
     class="w-70"
     style="margin-top: 0.5em; margin-left: 4em"
     [ngStyle.xs]="{ width: '90%', 'margin-left': '1em', 'padding-top': '60px' }"
@@ -35,6 +35,5 @@
         (transServ.currentLang == 'es' ? 'es.md' : 'en.md')
       "
     ></div>
-
-  </div>
+  </div> -->
 </div>

@@ -7,7 +7,7 @@ import {
 import { Observable, Subject } from "rxjs";
 import { map, take } from "rxjs/operators";
 import { SearchResponse } from "toco-lib";
-import { PeopleService } from "./people.service";
+import { ProjectService } from "./people.service";
 import { Permission } from "./permission.service";
 import { Project } from "./person.entity";
 
@@ -49,7 +49,7 @@ export class ShowErrorService {
 export class PeopleActiveResolverService {
   public constructor(
     private router: Router,
-    private service: PeopleService,
+    private service: ProjectService,
     private errorService: ShowErrorService
   ) {}
 

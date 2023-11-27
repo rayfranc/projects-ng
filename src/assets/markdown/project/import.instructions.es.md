@@ -1,0 +1,50 @@
+## JSON files
+
+```json
+{
+    "projects": [
+        {
+        "id":texto,
+        "title":[
+            {
+                "title":texto,
+                "lang":texto,
+                "titleType":texto,
+            }
+        ],
+        "creator":[
+            {
+            "creatorName":texto,
+            "givenName":texto,
+            "familyName":texto,
+        }
+        ],
+        "contributor":[{
+            "contributorName":texto,
+            "contributorType":texto,
+            "familyName":texto,
+        }],
+        "identifiers":[{
+            "idtype":texto,
+            "value":texto,
+        }],
+        "lenguaje":[texto],
+        "publishDate":{
+            "dateValue":Fecha(dd/mm/yyyy),
+            "dateType":texto,
+        },
+        "relatedIdentifier":[{
+            "idtype":texto,
+            "value":texto
+        }],
+        "fundingReference":[{
+            "founderName":texto,
+            "awardNumber":texto,
+            "awardURI":texto,
+        }],
+        "publisher":[texto],
+        },| ...
+        ...
+    ]
+}
+```

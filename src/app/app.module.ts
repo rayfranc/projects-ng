@@ -10,6 +10,7 @@ import { MarkdownModule } from "ngx-markdown";
 
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
+import { MatButtonModule } from "@angular/material/button";
 
 import { OAuthModule, OAuthStorage } from "angular-oauth2-oidc";
 import {
@@ -28,7 +29,6 @@ import {
 import { allowedURLS, environment } from "src/environments/environment";
 
 import { NgxDropzoneModule } from "node_modules/ngx-dropzone";
-import { OrgService } from "./_services/org.service";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ContactComponent } from "./contact/contact.component";
@@ -37,10 +37,10 @@ import { HeaderComponent } from "./header/header.component";
 import { MenuItemComponent } from "./header/menu-item/menu-item.component";
 import { MenuComponent } from "./header/menu/menu.component";
 import { HomeComponent } from "./home/home.component";
-import { CsvTableComponent } from "./import-people/csv-table/csv-table.component";
-import { ImportPeopleComponent } from "./import-people/import-people.component";
-import { JsonTableComponent } from "./import-people/json-table/json-table.component";
-import { OrgDialogComponent } from "./import-people/org-dialog/org-dialog.component";
+import { CsvTableComponent } from "./import-project/csv-table/csv-table.component";
+import { ImportPeopleComponent } from "./import-project/import-people.component";
+import { JsonTableComponent } from "./import-project/json-table/json-table.component";
+import { OrgDialogComponent } from "./import-project/org-dialog/org-dialog.component";
 import { MainlayoutComponent } from "./layout/mainlayout/mainlayout.component";
 import { PeopleLayoutComponent } from "./layout/project-layout/project-layout.component";
 import { PageNotFoundPeopleComponent } from "./page-not-found-project/page-not-found-people.component";
@@ -50,8 +50,9 @@ import { SearchListComponent } from "./search-list/search-list.component";
 import { SearchComponent } from "./search/search.component";
 import { SelectOrgComponent } from "./select-org/select-org.component";
 import { SharedModule } from "./shared/shared.module";
-import { AggregationViewComponent } from "./aggregations/aggregations.component";
+import { ProjectAggregationsComponent } from "./aggregations/aggregations.component";
 import { OtherTabComponent } from "./project-view/other-tab/other-tab.component";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 export function storageFactory(): OAuthStorage {
   return localStorage;
@@ -66,7 +67,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   declarations: [
     AppComponent,
     HomeComponent,
-    AggregationViewComponent,
+    ProjectAggregationsComponent,
     OtherTabComponent,
     PageNotFoundPeopleComponent,
     FooterComponent,
@@ -87,6 +88,8 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     CsvTableComponent,
   ],
   imports: [
+    NgxChartsModule,
+    MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -127,7 +130,6 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     SearchService,
     SourceServiceNoAuth,
     OrganizationServiceNoAuth,
-    OrgService,
     { provide: Environment, useValue: environment },
     { provide: OAuthStorage, useFactory: storageFactory },
   ],

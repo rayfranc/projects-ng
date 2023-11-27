@@ -1,5 +1,4 @@
 .general-card {
-  width: full;
   margin: 2vh;
 }
 .table {
@@ -15,6 +14,7 @@
   flex-grow: 1;
   min-width: 300px;
   max-width: 500px;
+  margin: 10px;
 }
 .section-title {
   font-weight: bolder;

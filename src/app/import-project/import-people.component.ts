@@ -4,7 +4,7 @@ import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
 import { MessageHandler, StatusCode } from "toco-lib";
-import { PeopleService } from "../project/people.service";
+import { ProjectService } from "../project/people.service";
 import { ParamMap, Params, Router } from "@angular/router";
 import { OrgDialogComponent } from "./org-dialog/org-dialog.component";
 
@@ -36,19 +36,20 @@ export class ImportPeopleComponent {
   ];
 
   requiredJSONKyes = [
-    "_id",
+    "title",
+    "creator",
+    "contributor",
     "identifiers",
-    "name",
-    "lastName",
-    "gender",
-    "country",
-    "institutional_email",
-    "emails",
+    "lenguaje",
+    "publishDate",
+    "relatedIdentifier",
+    "fundingReference",
+    "publisher",
   ];
 
   constructor(
     private _snackBar: MatSnackBar,
-    private peopleService: PeopleService,
+    private peopleService: ProjectService,
     public dialog: MatDialog
   ) {}
 
@@ -66,22 +67,21 @@ export class ImportPeopleComponent {
         if (areValidCSVKeys) {
           this.isJsonFile = false;
           this.file = file;
-          this.openDialog();
+
           // this.isOpenDialog=true
           return;
         }
       } else {
         persons = JSON.parse(fileContents);
-        const isValidJson =
-          persons.hasOwnProperty("persons") && Array.isArray(persons.persons);
-        const areValidKeys = this.requiredJSONKyes.every((key) =>
-          persons.persons[0].hasOwnProperty(key)
-        );
 
-        if (isValidJson && areValidKeys) {
+        if (
+          persons.hasOwnProperty("projects") &&
+          this.requiredJSONKyes.every((key) =>
+            persons.projects[0].hasOwnProperty(key)
+          )
+        ) {
           this.isJsonFile = true;
           this.file = file;
-          this.openDialog();
           // this.isOpenDialog=true
           return;
         }
@@ -171,29 +171,15 @@ export class ImportPeopleComponent {
     if (this.file.length === 0) {
       this.m.showMessage(StatusCode.OK, "No hay archivo para guardar");
     } else {
-      this.peopleService
-        .saveImport(this.org.id, this.file[0])
-        .subscribe((response) => {
-          console.log(response);
-          // this.formData.delete("peopleFile");
-        });
+      this.peopleService.saveImport(this.file[0]).subscribe((response) => {
+        console.log(response);
+        this.m.showMessage(StatusCode.OK, "Importado con exito");
+      });
     }
   }
 
   filtersChange(values: Params) {
     console.log(values.organizations);
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(OrgDialogComponent, {
-      width: "95%",
-      data: {},
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.org = result;
-    });
   }
 
   afterClosed(result) {

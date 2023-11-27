@@ -12,6 +12,10 @@ class Creator {
   givenName: string;
 }
 
+class RelatedIdentifier {
+  idtype: string;
+  idvalue: string;
+}
 class Contributor {
   contributorName: string;
   contributorType: string;
@@ -42,5 +46,15 @@ export class Project extends Entity {
 
   fundingReference: FundingReference[];
 
+  publishDate: {
+    dateType: string;
+    dateValue: string;
+  };
+
+  lenguaje: string[];
+
+  publisher: string[];
+
+  relatedIdentifier: RelatedIdentifier[];
   /************************************* More Data ******************************/
 }

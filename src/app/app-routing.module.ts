@@ -6,11 +6,13 @@ import { PageNotFoundPeopleComponent } from "./page-not-found-project/page-not-f
 import { SearchComponent } from "./search/search.component";
 import { ProjectViewComponent } from "./project-view/project-view.component";
 import { Layouts } from "./app.component";
-import { ImportPeopleComponent } from "./import-people/import-people.component";
+import { ImportPeopleComponent } from "./import-project/import-people.component";
 import { PeopleActiveResolverService } from "./project/people-resolver";
 import { PeopleLayoutComponent } from "./layout/project-layout/project-layout.component";
 import { MainlayoutComponent } from "./layout/mainlayout/mainlayout.component";
 import { AdminPermissionService } from "./project/permission.service";
+import { UpdateProjectComponent } from "./update-project/update-dialog.component";
+import { NewProjectComponent } from "./new-project/new-dialog.component";
 
 const routes: Routes = [
   // {
@@ -49,6 +51,26 @@ const routes: Routes = [
       },
     ],
     canActivate: [AdminPermissionService],
+  },
+  {
+    path: "edit/:id",
+    component: MainlayoutComponent,
+    children: [
+      {
+        path: "",
+        component: UpdateProjectComponent,
+      },
+    ],
+  },
+  {
+    path: "new",
+    component: MainlayoutComponent,
+    children: [
+      {
+        path: "",
+        component: NewProjectComponent,
+      },
+    ],
   },
   {
     path: "**",

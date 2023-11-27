@@ -1,18 +1,14 @@
-<router-outlet></router-outlet>
-<!--
 <div
   *ngIf="!isHome"
   class="bg-primary-color"
-  style="
-    height: 200px;
-    width: 100%
-  "
+  style="height: 200px; width: 100%"
 ></div>
 
-<div *ngIf="!isHome; else outHome"
-     fxLayout="row"
-     fxLayoutAlign="center center"
-     style="border-radius: 40px 40px 0 0"
+<div
+  *ngIf="!isHome; else outHome"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  style="border-radius: 40px 40px 0 0"
 >
   <div
     [ngStyle.xs]="{ width: '95%' }"
@@ -30,4 +26,4 @@
 
 <ng-template #outHome>
   <router-outlet></router-outlet>
-</ng-template> -->
+</ng-template>

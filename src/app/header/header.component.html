@@ -17,7 +17,7 @@
       </div>
       <a
         mat-button
-        [routerLink]="[env.projects, '']"
+        [routerLink]="[env.projects]"
         style="white-space: normal; display: flex; align-items: center"
       >
         <img
@@ -37,15 +37,6 @@
       fxLayoutAlign="center"
       fxLayoutGap="15px"
     >
-      <button
-        *ngIf="showMenuLang"
-        mat-icon-button
-        [matMenuTriggerFor]="menuLanguages"
-        matTooltip="{{ 'IDIOMA' | translate }}"
-      >
-        <mat-icon class="mat-18">translate</mat-icon>
-      </button>
-
       <app-menu [menuItems]="_menuOptions"></app-menu>
 
       <toco-authentication
@@ -59,23 +50,6 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-
-<mat-menu #menuLanguages="matMenu">
-  <a
-    *ngFor="let lang of languageTexts; let i = index"
-    mat-menu-item
-    (click)="setLanguage(i)"
-  >
-    <mat-icon *ngIf="i == currentLang; else elseTemplate_radio_button_unchecked"
-      >radio_button_checked</mat-icon
-    >
-    {{ lang }}
-  </a>
-
-  <ng-template #elseTemplate_radio_button_unchecked>
-    <mat-icon>radio_button_unchecked</mat-icon>
-  </ng-template>
-</mat-menu>
 
 <mat-menu #menuHeader="matMenu">
   <ng-container *ngFor="let item of menuElements">
