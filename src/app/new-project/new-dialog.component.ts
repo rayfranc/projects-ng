@@ -199,7 +199,10 @@ export class NewProjectComponent implements OnInit {
           creator ? creator.creatorName : "",
           Validators.pattern("^[a-zA-Z ]*$"),
         ],
-        givenName: [creator ? creator.givenName : "", Validators.required],
+        givenName: [
+          creator ? creator.givenName : "",
+          Validators.pattern("^[a-zA-Z ]*$"),
+        ],
         familyName: [creator ? creator.familyName : "", Validators.required],
       })
     );
